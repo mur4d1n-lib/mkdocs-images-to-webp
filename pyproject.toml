@@ -7,5 +7,5 @@ dependencies = [
     'importlib-metadata; python_version>"3.8"',
 ]
 
-[project.scripts]
-png-to-webp = "mkdocs_png_to_webp.plugin:ConvertPngToWebp"
+[project.entry-points."mkdocs.plugins"]
+png-to-webp = "mkdocs_png_to_webp.plugin:ConvertPngToWebpPlugin"

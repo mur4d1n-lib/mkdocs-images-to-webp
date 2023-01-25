@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='mypackage',
+    name='mkdocs-png-to-webp',
     version='0.0.1',
     install_requires=[
         'mkdocs',
