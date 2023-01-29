@@ -1,0 +1,26 @@
+from mkdocs.plugins import BasePlugin
+from mkdocs.config import base, config_options as c
+from PIL import Image
+
+
+class ConvertImagesToWebpPluginConfig(base.Config):
+    extensions = c.ListOfItems(c.Choice(('png', 'jpeg', 'jpg', 'bmp'), default='png'))
+
+
+class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
+    def on_files(self, files, config):
+        extensions_local = list([extension for extension in self.config.extensions])
+        for file in files:
+            for extension in extensions_local:
+                if file.abs_src_path.endswith(extension):
+                    image = Image.open(file.abs_src_path)
+                    file.abs_dest_path = file.abs_dest_path[:len(file.abs_dest_path) - 4] + ".webp"
+                    image.save(file.abs_src_path, format="webp")
+                    break
+        return files
+
+    def on_page_content(self, html, page, config, files):
+        extensions_local = list([extension for extension in self.config.extensions])
+        for extension in extensions_local:
+            html = html.replace(extension, "webp")
+        return html

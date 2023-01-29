@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='mkdocs-png-to-webp',
+    name='mkdocs-images-to-webp',
     version='0.0.1',
     install_requires=[
         'mkdocs',
@@ -12,6 +12,6 @@ setup(
 
 entry_points={
     'mkdocs.plugins': [
-        'png-to-webp = mkdocs_png_to_webp.plugin:ConvertPngToWebpPlugin',
+        'images-to-webp = mkdocs_images_to_webp.plugin:ConvertImagesToWebpPlugin',
     ]
 }
