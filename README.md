@@ -1,2 +1,3 @@
-# mkdocs-png-to-webp
-Конвертер png в webp для mkdocs
+# mkdocs-images-to-webp
+
+Convert images to `.webp` format im mkdocs
