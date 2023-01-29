@@ -1,0 +1,11 @@
+[project]
+name = "mkdocs-png-to-webp"
+version = "0.0.1"
+dependencies = [
+    "mkdocs",
+    "pillow",
+    'importlib-metadata; python_version>"3.8"',
+]
+
+[project.entry-points."mkdocs.plugins"]
+png-to-webp = "mkdocs_png_to_webp.plugin:ConvertPngToWebpPlugin"
