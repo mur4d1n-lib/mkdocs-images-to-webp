@@ -12,6 +12,6 @@ setup(
 
 entry_points={
     'mkdocs.plugins': [
-        'png-to-webp = mkdocs_png_to_webp.plugin:ConvertPngToPdf',
+        'png-to-webp = mkdocs_png_to_webp.plugin:ConvertPngToWebpPlugin',
     ]
 }
