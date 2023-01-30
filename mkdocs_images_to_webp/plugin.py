@@ -17,6 +17,7 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
                     file.abs_dest_path = file.abs_dest_path[:len(file.abs_dest_path) - 4] + ".webp"
                     image.save(file.abs_src_path, format="webp")
                     break
+        print("INFO     -  [images-to-webp] Formats", ', '.join(extensions_local), 'successfully changed to webp')
         return files
 
     def on_page_content(self, html, page, config, files):
