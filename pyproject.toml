@@ -1,9 +1,9 @@
 [project]
 name = "mkdocs-images-to-webp"
-version = "0.3"
+version = "0.4"
 dependencies = [
-    "mkdocs",
-    "pillow",
+    'mkdocs==1.4.2',
+    'pillow',
     'importlib-metadata; python_version>"3.8"',
 ]
 keywords = ['mkdocs', 'images', 'webp']

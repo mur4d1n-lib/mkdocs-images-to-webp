@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='mkdocs-images-to-webp',
-    version='0.3',
+    version='0.4',
     install_requires=[
-        'mkdocs',
+        'mkdocs == 1.4.2',
         'pillow',
         'importlib-metadata; python_version == "3.8"',
     ],
