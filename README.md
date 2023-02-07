@@ -2,6 +2,8 @@
 
 This plugin is designed to convert images in your mkdocs project to the `webp` format.
 
+Enter in your terminal `pip install mkdocs-images-to-webp` to install it.
+
 To add a plugin to your mkdocs project, specify the following in `mkdocs.yml` in the `plugins` section:
 
 ```
