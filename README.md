@@ -12,6 +12,9 @@ plugins:
       - <ext1>
       - <ext2>
         ...
+    img_dir: docs/<your/path/to/images/folder>
 ```
 
 In the `extensions` section you can specify the most common types of bitmaps: `png`, `jpeg`, `jpg`, `bmp`.
+
+In the `img_dir` field you can specify where are your images stored. Default value: `docs/img`.
