@@ -39,6 +39,6 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
             html = html.replace(extension, "webp")
         return html
 
-    def on_post_build(self, config):
-        target_dir = self.config.img_dir
-        self.clean(target_dir)
+    # def on_post_build(self, config):
+    #     target_dir = self.config.img_dir
+    #     self.clean(target_dir)

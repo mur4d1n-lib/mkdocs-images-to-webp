@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='mkdocs-images-to-webp',
-    version='0.6',
+    version='0.7',
     install_requires=[
         'mkdocs == 1.4.2',
         'pillow',
@@ -11,7 +11,7 @@ setup(
     author='mur4d1n',
     author_email='mur4d1n@yandex.ru',
     url='https://github.com/mur4d1n',
-    download_url='https://github.com/mur4d1n-lib/mkdocs-images-to-webp/archive/refs/tags/v_03.tar.gz',
+    download_url='https://github.com/mur4d1n-lib/mkdocs-images-to-webp/archive/refs/tags/v_07.tar.gz',
     keywords=['mkdocs', 'images', 'webp'],
 )
 
