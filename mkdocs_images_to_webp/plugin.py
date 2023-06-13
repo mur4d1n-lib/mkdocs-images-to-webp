@@ -26,9 +26,9 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
             for extension in extensions_local:
                 if file.abs_src_path.endswith(extension) and file.abs_src_path.find(self.config.img_dir) + 1:
                     image = Image.open(file.abs_src_path)
-                    file.abs_src_path = file.abs_src_path + ".webp"
+                    file.abs_src_path = file.abs_src_path[:len(file.abs_src_path) - 4] + ".webp"
                     image.save(file.abs_src_path, format='webp')
-                    file.abs_dest_path = file.abs_dest_path + ".webp"
+                    file.abs_dest_path = file.abs_dest_path[:len(file.abs_src_path) - 4] + ".webp"
                     break
         print("INFO     -  [images-to-webp] Formats", ', '.join(extensions_local), 'successfully changed to webp')
         return files

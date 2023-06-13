@@ -1,6 +1,6 @@
 [project]
 name = "mkdocs-images-to-webp"
-version = "0.5"
+version = "0.6"
 dependencies = [
     'mkdocs==1.4.2',
     'pillow',
