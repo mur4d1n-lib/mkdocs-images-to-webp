@@ -24,7 +24,7 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
         extensions_local = list([extension for extension in self.config.extensions])
         for file in files:
             for extension in extensions_local:
-                if file.abs_src_path.endswith(extension) and file.abs_src_path.find(self.config.img_dir) + 1:
+                if file.abs_src_path.endswith(extension):
                     image = Image.open(file.abs_src_path)
                     file.abs_src_path = file.abs_src_path[:len(file.abs_src_path) - 4] + ".webp"
                     image.save(file.abs_src_path, format='webp')
@@ -36,7 +36,7 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
     def on_page_content(self, html, page, config, files):
         extensions_local = list([extension for extension in self.config.extensions])
         for extension in extensions_local:
-            html = html.replace(extension, "webp")
+            html = html.replace(extension, extension + ".webp")
         return html
 
     # def on_post_build(self, config):
