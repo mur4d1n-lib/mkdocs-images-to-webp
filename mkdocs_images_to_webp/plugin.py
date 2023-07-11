@@ -36,7 +36,8 @@ class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
     def on_page_content(self, html, page, config, files):
         extensions_local = list([extension for extension in self.config.extensions])
         for extension in extensions_local:
-            html = html.replace(extension, extension + ".webp")
+            new_extension = extension + ".webp"
+            html = html.replace(extension, new_extension)
         return html
 
     # def on_post_build(self, config):
