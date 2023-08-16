@@ -1,7 +1,14 @@
+import os
+import re
+import shutil
+import logging
+
+from PIL import Image
 from mkdocs.plugins import BasePlugin
 from mkdocs.config import base, config_options as c
-from PIL import Image
-import os
+
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)-8s -  %(message)s')
 
 
 class ConvertImagesToWebpPluginConfig(base.Config):
@@ -10,36 +17,28 @@ class ConvertImagesToWebpPluginConfig(base.Config):
 
 
 class ConvertImagesToWebpPlugin(BasePlugin[ConvertImagesToWebpPluginConfig]):
-    def clean(self, target_dir):
-        paths = os.listdir(target_dir)
-        for path in paths:
-            full_path = '/'.join([target_dir, path])
-            if os.path.isdir(full_path):
-                self.clean(full_path)
-            else:
-                if path.endswith('.webp'):
-                    os.remove(full_path)
 
     def on_files(self, files, config):
-        extensions_local = list([extension for extension in self.config.extensions])
         for file in files:
-            for extension in extensions_local:
+            for extension in (self.config.extensions):
                 if file.abs_src_path.endswith(extension):
                     image = Image.open(file.abs_src_path)
-                    file.abs_src_path = file.abs_src_path[:len(file.abs_src_path) - 4] + ".webp"
-                    image.save(file.abs_src_path, format='webp')
-                    file.abs_dest_path = file.abs_dest_path[:len(file.abs_src_path) - 4] + ".webp"
+                    image.save(os.path.splitext(file.abs_src_path)[0] + '.webp', format='webp')
                     break
-        print("INFO     -  [images-to-webp] Formats", ', '.join(extensions_local), 'successfully changed to webp')
+        logging.info(f"[images-to-webp] Formats {', '.join(self.config.extensions)} successfully changed to webp")
         return files
 
     def on_page_content(self, html, page, config, files):
-        extensions_local = list([extension for extension in self.config.extensions])
-        for extension in extensions_local:
-            new_extension = extension + ".webp"
-            html = html.replace(extension, new_extension)
+        for extension in (self.config.extensions):
+            img_regex = r'<img[^>]*?src=[\"\']([^\"\']+)\.{}[\"\'][^>]*?>'.format(extension)
+            html = re.sub(img_regex, rf'<img src="\1.webp">', html)
+            a_regex = r'<a[^>]*?href=[\"\']([^\"\']+)\.{}[\"\'][^>]*?>'.format(extension)
+            html = re.sub(a_regex, rf'<a href="\1.webp">', html)
         return html
 
-    # def on_post_build(self, config):
-    #     target_dir = self.config.img_dir
-    #     self.clean(target_dir)
+    def on_post_build(self, config):
+        img_source_path = self.config.img_dir
+        img_target_path = os.path.join(config['site_dir'], 'img')
+        if os.path.exists(img_target_path):
+            shutil.rmtree(img_target_path)
+        shutil.copytree(img_source_path, img_target_path)
